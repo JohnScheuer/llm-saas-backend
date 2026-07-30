@@ -1,119 +1,148 @@
-# Agent Tooling Runtime
+# LLM SaaS Backend
 
-![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
-![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
-![FastAPI](https://img.shields.io/badge/FastAPI-Production-009688.svg)
-![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-336791.svg)
-![Redis](https://img.shields.io/badge/Caching-Redis-red.svg)
-![Docker](https://img.shields.io/badge/Docker-Ready-2496ed.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.10+-brightgreen.svg)]
+[![FastAPI](https://img.shields.io/badge/FastAPI-Production%20Ready-009688.svg)]
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue.svg)]
+[![Redis](https://img.shields.io/badge/Redis-7-red.svg)]
+[![Docker](https://img.shields.io/badge/Docker-Compose-blue.svg)]
+[![LLM](https://img.shields.io/badge/OpenAI-Compatible-orange.svg)]
+[![SaaS](https://img.shields.io/badge/SaaS-Billing%20Enabled-purple.svg)]
 
-**Production-ready LLM backend with SaaS billing, distributed rate limiting, SQL financial integrity, and OpenAI-compatible API.**
+Complete LLM-as-a-Service backend.  
+Sell AI access with tool calling, billing, and enterprise-grade infrastructure.
 
-Author: João Felipe De Souza  
-Year: 2026
+Everything needed to launch an AI SaaS product:
+- OpenAI-compatible API
+- Tool calling execution
+- Credit-based billing
+- Stripe webhook integration
+- Distributed rate limiting
+- Financial audit ledger
+- Admin dashboard
 
----
+This is not just a tool-calling framework.  
+This is production-ready LLM SaaS infrastructure.
 
-## PROJECT OVERVIEW
-Agent Tooling Runtime is a full-stack backend architecture designed for building scalable AI SaaS platforms.
+========================================
+STACK
+========================================
 
-It provides:
-- **OpenAI-compatible Chat API**
-- **Tool calling execution layer**
-- **Async multi-step agent runtime**
-- **Sliding-window Redis rate limiting**
-- **SQL-based financial ledger with Decimal precision**
-- **Monthly SaaS billing model**
-- **Credit top-up system**
-- **Stripe webhook simulation**
-- **Prometheus metrics**
-- **Admin dashboard**
-- **Dockerized production deployment**
+Backend:
+- FastAPI + Gunicorn (production async server)
+- HuggingFace model runtime
+- Async multi-step agent execution
 
----
+Infrastructure:
+- Redis (distributed sliding-window rate limiting)
+- PostgreSQL (transactional billing + audit log)
+- Docker Compose (single-command deployment)
+- Prometheus (observability)
 
-## ARCHITECTURE
-```text
-Client 
-  | 
-  v 
-FastAPI (Gunicorn Workers) 
-  | 
-  +-- Redis (Distributed Rate Limiting) 
-  | 
-  +-- PostgreSQL (Billing + Transaction History) 
-  | 
-  +-- LLM Runtime (HuggingFace / Qwen2) 
-  | 
-  +-- Tool Execution Layer (Registry-based)
-```
+========================================
+PRODUCT FEATURES
+========================================
 
----
+For End Users:
+- OpenAI-compatible /v1/chat/completions API
+- Tool calling support (register any Python function)
+- Multi-step agent workflows
+- Streaming responses
 
-## CORE FEATURES
+For SaaS Operators:
+- Credit-based billing with monthly renewal
+- Free tier + Pro tier model
+- Hard limit enforcement (HTTP 402)
+- Soft warnings at usage thresholds
+- Stripe webhook integration for top-ups
+- Admin dashboard for user management
+- Full transaction ledger (audit-ready SQL)
 
-### LLM Runtime
-- Async agent loop for non-blocking I/O
-- Tool execution system with alias normalization
-- Structured usage tracking per request
+For Reliability:
+- Distributed rate limiting (multi-worker safe)
+- Decimal precision for financial operations (no float errors)
+- Immutable event logs
+- Prometheus metrics endpoint
+- Containerized deployment
 
-### Rate Limiting
-- Redis sliding window (ZSET) implementation
-- Multi-worker and multi-instance safe
-- Rate limit headers returned to client (Limit, Remaining, Reset)
+========================================
+ARCHITECTURE
+========================================
 
-### Financial Layer
-- PostgreSQL persistent ledger
-- **Decimal financial precision** (no float rounding risks)
-- Immutable usage and credit event logs
-- Hard credit cap (HTTP 402) and soft warning thresholds
+Client
+  |
+  v
+FastAPI (Gunicorn Workers)
+  |
+  +-- Redis (Rate Limiting)
+  |
+  +-- PostgreSQL (Billing Ledger)
+  |
+  +-- LLM Runtime (Tool Calling Agent)
 
-### SaaS Model
-- Free and Pro plan support
-- Monthly credit allocation logic
-- Stripe webhook simulation for automated top-ups
+Docker Network:
+- api
+- postgres
+- redis
 
-### Observability
-- Prometheus metrics endpoint (`/metrics`)
-- Per-key usage and latency tracking
-- Full per-step JSON tracing
+========================================
+QUICK START
+========================================
 
----
+Run everything with:
 
-## QUICK START (DOCKER)
-
-**Build and run:**
-```bash
 docker compose up --build
-```
 
-**Endpoints:**
-- API: `http://127.0.0.1:8000`
-- Admin Dashboard: `http://127.0.0.1:8000/admin/dashboard`
-- Metrics: `http://127.0.0.1:8000/metrics`
+Endpoints:
+- API: http://127.0.0.1:8000
+- Admin Dashboard: http://127.0.0.1:8000/admin/dashboard
+- Metrics: http://127.0.0.1:8000/metrics
 
----
+========================================
+WHY THIS EXISTS
+========================================
 
-## DOCUMENTATION
-- **Architecture & Decisions:** See [design.md](design.md)
-- **Technical Metrics:** See [summary.txt](summary.txt)
-- **License:** See [LICENSE](LICENSE)
+Most LLM tutorials show how to call an API.
 
----
+This project shows how to sell it.
 
-## PRODUCTION READINESS
-- PostgreSQL persistent storage
-- Redis distributed rate limiting
-- Gunicorn multi-worker setup
-- Docker Compose orchestration
-- Audit-ready financial records
+It implements all the infrastructure that separates a demo from a real AI business:
+- Billing
+- Rate limits
+- Financial integrity
+- Credit enforcement
+- SaaS model
+- Admin tooling
+- Audit trail
 
----
+========================================
+DOCUMENTATION
+========================================
 
-## Related Projects
-- [fused-int4-gemm-sm75](https://github.com/JohnScheuer/fused-int4-gemm-sm75): Custom CUDA kernels.
-- [distributed-inference-engine](https://github.com/JohnScheuer/distributed-inference-engine): Scale-out LLM parallelism.
-- [rag-inference-stack](https://github.com/JohnScheuer/rag-inference-stack): Knowledge-augmented generation.
+System Architecture:
+See design.md
 
----
-[MIT](LICENSE) - Joao Felipe De Souza, 2026
+Executive Overview:
+See summary.txt
+
+License:
+See LICENSE
+
+========================================
+STATUS
+========================================
+
+Production-ready backend architecture.
+Prepared for:
+- Stripe production integration
+- PostgreSQL scaling
+- Kubernetes deployment
+- Enterprise SaaS use
+
+========================================
+AUTHOR
+========================================
+
+João Felipe De Souza
+2026
+
