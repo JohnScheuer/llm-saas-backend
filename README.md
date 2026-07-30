@@ -1,168 +1,118 @@
 # Agent Tooling Runtime
+License: MIT [Python] [FastAPI] [PostgreSQL] [Redis] [Docker] [LLM] [SaaS]
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.10+-brightgreen.svg)]
-[![FastAPI](https://img.shields.io/badge/FastAPI-Production%20Ready-009688.svg)]
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue.svg)]
-[![Redis](https://img.shields.io/badge/Redis-7-red.svg)]
-[![Docker](https://img.shields.io/badge/Docker-Compose-blue.svg)]
-[![LLM](https://img.shields.io/badge/OpenAI-Compatible-orange.svg)]
-[![SaaS](https://img.shields.io/badge/SaaS-Billing%20Enabled-purple.svg)]
-
-Production-ready LLM backend with SaaS billing, distributed rate limiting, SQL financial integrity, and OpenAI-compatible API.
+**Production-ready LLM backend with SaaS billing, distributed rate limiting, SQL financial integrity, and OpenAI-compatible API.**
 
 Author: João Felipe De Souza  
-Year: 2026  
+Year: 2026
 
-========================================
-PROJECT OVERVIEW
-========================================
+---
 
+## PROJECT OVERVIEW
 Agent Tooling Runtime is a full-stack backend architecture designed for building scalable AI SaaS platforms.
 
 It provides:
+- **OpenAI-compatible Chat API**
+- **Tool calling execution layer**
+- **Async multi-step agent runtime**
+- **Sliding-window Redis rate limiting**
+- **SQL-based financial ledger with Decimal precision**
+- **Monthly SaaS billing model**
+- **Credit top-up system**
+- **Stripe webhook simulation**
+- **Prometheus metrics**
+- **Admin dashboard**
+- **Dockerized production deployment**
 
-- OpenAI-compatible Chat API
-- Tool calling execution layer
-- Async multi-step agent runtime
-- Sliding-window Redis rate limiting
-- SQL-based financial ledger with Decimal precision
-- Monthly SaaS billing model
-- Credit top-up system
-- Stripe webhook simulation
-- Prometheus metrics
-- Admin dashboard
-- Dockerized production deployment
+---
 
-========================================
-ARCHITECTURE
-========================================
+## ARCHITECTURE
+```text
+Client 
+  | 
+  v 
+FastAPI (Gunicorn Workers) 
+  | 
+  +-- Redis (Distributed Rate Limiting) 
+  | 
+  +-- PostgreSQL (Billing + Transaction History) 
+  | 
+  +-- LLM Runtime (HuggingFace / Qwen2) 
+  | 
+  +-- Tool Execution Layer (Registry-based)
+```
 
-Client
-  |
-  v
-FastAPI (Gunicorn Workers)
-  |
-  +-- Redis (Rate Limiting)
-  |
-  +-- PostgreSQL (Billing + History)
-  |
-  +-- LLM Runtime (HuggingFace)
-  |
-  +-- Tool Execution Layer
+---
 
-========================================
-CORE FEATURES
-========================================
+## CORE FEATURES
 
-LLM Runtime
-- Async agent loop
-- Tool execution system
-- Structured usage tracking
+### LLM Runtime
+- Async agent loop for non-blocking I/O
+- Tool execution system with alias normalization
+- Structured usage tracking per request
 
-Rate Limiting
-- Redis sliding window
-- Multi-worker safe
-- Per-key configuration
-- Rate limit headers
+### Rate Limiting
+- Redis sliding window (ZSET) implementation
+- Multi-worker and multi-instance safe
+- Rate limit headers returned to client (Limit, Remaining, Reset)
 
-Financial Layer
+### Financial Layer
 - PostgreSQL persistent ledger
-- Decimal financial precision
-- Immutable usage events
-- Immutable credit events
-- Monthly billing cycle
-- Hard credit cap (HTTP 402)
-- Soft credit warning threshold
+- **Decimal financial precision** (no float rounding risks)
+- Immutable usage and credit event logs
+- Hard credit cap (HTTP 402) and soft warning thresholds
 
-SaaS Model
-- Free and Pro plans
-- Monthly credit allocation
-- Extra credit top-up
-- Stripe webhook simulation
-- Admin credit management
+### SaaS Model
+- Free and Pro plan support
+- Monthly credit allocation logic
+- Stripe webhook simulation for automated top-ups
 
-Observability
-- Prometheus metrics endpoint
-- Per-key usage tracking
-- Latency metrics
+### Observability
+- Prometheus metrics endpoint (`/metrics`)
+- Per-key usage and latency tracking
+- Full per-step JSON tracing
 
-Admin Tools
-- HTML Dashboard
-- Billing history endpoint
-- Secure admin endpoint
+---
 
-========================================
-DOCUMENTATION
-========================================
+## QUICK START (DOCKER)
 
-Design Document  
-See design.md  
-
-Project Summary  
-See summary.txt  
-
-License  
-See LICENSE  
-
-========================================
-QUICK START (DOCKER)
-========================================
-
-Build and run:
-
+**Build and run:**
+```bash
 docker compose up --build
+```
 
-API available at:
+**Endpoints:**
+- API: `http://127.0.0.1:8000`
+- Admin Dashboard: `http://127.0.0.1:8000/admin/dashboard`
+- Metrics: `http://127.0.0.1:8000/metrics`
 
-http://127.0.0.1:8000
+---
 
-Admin Dashboard:
+## DOCUMENTATION
+- **Architecture & Decisions:** See [design.md](design.md)
+- **Technical Metrics:** See [summary.txt](summary.txt)
+- **License:** See [LICENSE](LICENSE)
 
-http://127.0.0.1:8000/admin/dashboard
+---
 
-========================================
-PRODUCTION READINESS
-========================================
-
+## PRODUCTION READINESS
 - PostgreSQL persistent storage
 - Redis distributed rate limiting
-- Gunicorn multi-worker
+- Gunicorn multi-worker setup
 - Docker Compose orchestration
 - Audit-ready financial records
-- Extensible SaaS architecture
 
-========================================
-ROADMAP
-========================================
+---
 
-Planned Enhancements:
+## VISION
+Agent Tooling Runtime is built as a foundation for AI-powered SaaS products. The system prioritizes financial correctness, production stability, and multi-tenant observability.
 
-- Stripe signature verification
-- Invoice generation
-- Export CSV financial reports
-- Multi-tier plans
-- Alembic migrations
-- PostgreSQL clustering
-- Kubernetes deployment
-- Enterprise monitoring stack
+---
 
-========================================
-VISION
-========================================
+## Related Projects
+- [fused-int4-gemm-sm75](https://github.com/JohnScheuer/fused-int4-gemm-sm75): Custom CUDA kernels.
+- [distributed-inference-engine](https://github.com/JohnScheuer/distributed-inference-engine): Scale-out LLM parallelism.
+- [rag-inference-stack](https://github.com/JohnScheuer/rag-inference-stack): Knowledge-augmented generation.
 
-Agent Tooling Runtime is built as a foundation for AI-powered SaaS products.
-
-The system prioritizes:
-
-- Financial correctness
-- Production stability
-- Multi-tenant architecture
-- Observability
-- Extensibility
-- Secure-by-design implementation
-
-========================================
-END
-========================================
-
+---
+[MIT](LICENSE) - Joao Felipe De Souza, 2026
