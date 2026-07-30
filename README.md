@@ -1,22 +1,18 @@
 # Agent Tooling Runtime
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.10+-brightgreen.svg)]
+[![FastAPI](https://img.shields.io/badge/FastAPI-Production%20Ready-009688.svg)]
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue.svg)]
+[![Redis](https://img.shields.io/badge/Redis-7-red.svg)]
+[![Docker](https://img.shields.io/badge/Docker-Compose-blue.svg)]
+[![LLM](https://img.shields.io/badge/OpenAI-Compatible-orange.svg)]
+[![SaaS](https://img.shields.io/badge/SaaS-Billing%20Enabled-purple.svg)]
+
 Production-ready LLM backend with SaaS billing, distributed rate limiting, SQL financial integrity, and OpenAI-compatible API.
 
 Author: João Felipe De Souza  
 Year: 2026  
-
-========================================
-BADGES
-========================================
-
-Status: Production Ready  
-License: MIT  
-Language: Python 3.10+  
-Framework: FastAPI  
-Database: PostgreSQL  
-Cache: Redis  
-Containerized: Docker Compose  
-LLM Backend: HuggingFace  
 
 ========================================
 PROJECT OVERVIEW
@@ -38,8 +34,6 @@ It provides:
 - Admin dashboard
 - Dockerized production deployment
 
-This project is structured for real-world SaaS deployment.
-
 ========================================
 ARCHITECTURE
 ========================================
@@ -56,8 +50,6 @@ FastAPI (Gunicorn Workers)
   +-- LLM Runtime (HuggingFace)
   |
   +-- Tool Execution Layer
-
-All services are orchestrated via Docker Compose.
 
 ========================================
 CORE FEATURES
@@ -106,15 +98,12 @@ DOCUMENTATION
 
 Design Document  
 See design.md  
-Describes system architecture, financial model, security, and extensibility.
 
 Project Summary  
 See summary.txt  
-Executive technical overview of the platform.
 
 License  
 See LICENSE  
-MIT License (2026 João Felipe De Souza)
 
 ========================================
 QUICK START (DOCKER)
@@ -131,22 +120,6 @@ http://127.0.0.1:8000
 Admin Dashboard:
 
 http://127.0.0.1:8000/admin/dashboard
-
-========================================
-SECURITY MODEL
-========================================
-
-Authentication:
-Authorization: Bearer <API_KEY>
-
-Admin access:
-X-Admin-Secret header
-
-Rate limiting:
-Redis-backed sliding window
-
-Financial integrity:
-SQL ledger with Decimal precision
 
 ========================================
 PRODUCTION READINESS
