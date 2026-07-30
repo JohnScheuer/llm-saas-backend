@@ -1,5 +1,11 @@
 # Agent Tooling Runtime
-License: MIT [Python] [FastAPI] [PostgreSQL] [Redis] [Docker] [LLM] [SaaS]
+
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
+![FastAPI](https://img.shields.io/badge/FastAPI-Production-009688.svg)
+![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-336791.svg)
+![Redis](https://img.shields.io/badge/Caching-Redis-red.svg)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ed.svg)
 
 **Production-ready LLM backend with SaaS billing, distributed rate limiting, SQL financial integrity, and OpenAI-compatible API.**
 
@@ -101,11 +107,6 @@ docker compose up --build
 - Gunicorn multi-worker setup
 - Docker Compose orchestration
 - Audit-ready financial records
-
----
-
-## VISION
-Agent Tooling Runtime is built as a foundation for AI-powered SaaS products. The system prioritizes financial correctness, production stability, and multi-tenant observability.
 
 ---
 
