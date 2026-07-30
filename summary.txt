@@ -1,0 +1,114 @@
+Agent Tooling Runtime
+Author: João Felipe De Souza
+Year: 2026
+
+========================================
+PROJECT SUMMARY
+========================================
+
+Agent Tooling Runtime is a production-ready LLM serving backend that provides:
+
+• OpenAI-compatible Chat Completions API
+• Tool calling (function execution)
+• Async multi-step agent loop
+• Streaming support
+• Redis-based sliding window rate limiting
+• PostgreSQL financial persistence
+• Decimal-safe billing logic
+• Monthly SaaS billing model
+• Soft credit warning threshold
+• Hard monthly credit cap
+• Stripe webhook simulation
+• Admin credit management endpoint
+• Admin HTML dashboard
+• Prometheus metrics endpoint
+• Dockerized production stack
+• Gunicorn multi-worker setup
+
+========================================
+ARCHITECTURE
+========================================
+
+Docker Network
+ ├── billing-api (FastAPI + Gunicorn)
+ ├── billing-postgres (Persistent SQL billing)
+ └── billing-redis (Distributed rate limiting)
+
+========================================
+CORE CAPABILITIES
+========================================
+
+1. LLM Runtime
+   - HuggingFace model integration
+   - Tool calling with execution layer
+   - Multi-step reasoning loop
+   - Structured usage reporting
+
+2. Rate Limiting
+   - Redis-backed sliding window
+   - Multi-instance safe
+   - Per-key configuration
+   - Rate limit headers returned to client
+
+3. Financial Layer
+   - SQL-based persistent billing
+   - Decimal precision (no float rounding risk)
+   - Usage events stored per request
+   - Credit events stored per top-up
+   - Monthly billing cycle
+   - Hard cap enforcement (HTTP 402)
+   - Soft warning threshold (header-based)
+
+4. SaaS Model
+   - Free & Pro plans
+   - Monthly credit allocation
+   - Extra credit top-ups
+   - Stripe webhook simulation
+   - Audit-ready database structure
+
+5. Observability
+   - Prometheus metrics
+   - Per-key usage tracking
+   - Latency tracking
+   - Tool call metrics
+
+6. Admin Layer
+   - Secure admin secret
+   - Credit top-up endpoint
+   - Billing history endpoint
+   - HTML dashboard overview
+
+========================================
+SECURITY & PRODUCTION FEATURES
+========================================
+
+• API key authentication
+• Redis atomic rate limiting
+• Financial integrity with Decimal
+• Dockerized services
+• Gunicorn multi-worker support
+• PostgreSQL persistent storage
+• Clear separation of concerns
+• Scalable architecture
+
+========================================
+TARGET USE CASES
+========================================
+
+• LLM SaaS backend
+• Multi-tenant AI API
+• Token-based billing platform
+• AI tool execution service
+• Production LLM infrastructure
+
+========================================
+STATUS
+========================================
+
+Production-ready backend architecture.
+Prepared for:
+- Stripe integration
+- PostgreSQL scaling
+- Kubernetes deployment
+- Enterprise SaaS use
+

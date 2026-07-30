@@ -1,0 +1,6 @@
+venv/
+__pycache__/
+*.pyc
+billing.db
+.env
+.DS_Store
